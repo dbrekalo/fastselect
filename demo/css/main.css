@@ -1,0 +1,43 @@
+html,
+body {
+  min-height: 100%;
+}
+
+html {
+  font-size: 62.5%;
+  background: #f2f2f2;
+}
+
+body {
+  font-size: 1em;
+  min-width: 32em;
+  position: relative;
+}
+
+.mainWrap {
+  margin: 2em auto;
+  max-width: 70em;
+  padding: 2em;
+  min-height: 90em;
+  background-color: #fff;
+  border-radius: 0.3em;
+  box-shadow: 0 0.2em 0.3em rgba(0, 0, 0, 0.1);
+}
+
+.titleType1 {
+  font-size: 2.6em;
+  padding: 0;
+  margin: 0 0 0.76923em;
+}
+
+.panel {
+  padding: 2.5em 0;
+  border-top: 1px solid #ededed;
+}
+
+.textType1 {
+  font-size: 1.6em;
+  padding: 0;
+  margin: 0 0 1.25em;
+  color: #999;
+}

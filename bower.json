@@ -1,0 +1,30 @@
+{
+  "name": "fast-select",
+  "version": "0.1.0",
+  "homepage": "https://github.com/dbrekalo/fastselect",
+  "authors": [
+    "Damir Brekalo <dbrekalo@gmail.com>"
+  ],
+  "description": "",
+  "main": "dist/fastselect.min.js",
+  "keywords": [
+    "select",
+    "fast",
+    "fastselect"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bourbon": "~4.2.3"
+  },
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "fastsearch": "~1"
+  }
+}
