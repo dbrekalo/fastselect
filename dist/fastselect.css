@@ -46,6 +46,7 @@ General styling
   box-sizing: border-box;
   color: #232323;
   font-size: 1.1em;
+  background-color: #fff;
 }
 .fstElement > select,
 .fstElement > input {
@@ -67,8 +68,8 @@ General styling
   content: "";
   right: 0.71429em;
   top: 50%;
-  margin-top: -0.28571em;
-  border: 0.28571em solid transparent;
+  margin-top: -0.17857em;
+  border: 0.35714em solid transparent;
   border-top-color: #cacaca;
 }
 
@@ -161,6 +162,9 @@ Single Mode
   color: #999;
   border: 1px solid #D7D7D7;
 }
+.fstSingleMode.fstActive {
+  z-index: 100;
+}
 .fstSingleMode.fstActive.fstElement,
 .fstSingleMode.fstActive .fstControls,
 .fstSingleMode.fstActive .fstResults {
@@ -172,6 +176,7 @@ Single Mode
 .fstSingleMode.fstActive .fstResults {
   display: block;
   z-index: 10;
+  margin-top: -1px;
 }
 
 /*----------------------------------------------------------------------------------------------------
@@ -184,13 +189,22 @@ Multiple mode
   margin: 0 0.41667em 0.41667em 0;
   padding: 0.33333em 0.33333em 0.33333em 1.5em;
   float: left;
-  background-color: #F9F9F9;
   border-radius: 0.25em;
-  border: 1px solid #D7D7D7;
+  border: 1px solid #43A2F3;
   cursor: auto;
+  color: #fff;
+  background-color: #43A2F3;
   -webkit-animation: fstAnimationEnter 0.2s;
   -moz-animation: fstAnimationEnter 0.2s;
   animation: fstAnimationEnter 0.2s;
+}
+.fstChoiceItem.mod1 {
+  background-color: #F9F9F9;
+  border: 1px solid #D7D7D7;
+  color: #232323;
+}
+.fstChoiceItem.mod1 > .fstChoiceRemove {
+  color: #a4a4a4;
 }
 
 .fstChoiceRemove {
@@ -199,22 +213,19 @@ Multiple mode
   border: 0;
   cursor: pointer;
   background: none;
-  font-size: 1em;
+  font-size: 1.16667em;
   position: absolute;
   left: 0;
   top: 50%;
-  width: 1.5em;
-  line-height: 1.5em;
-  margin-top: -0.75em;
+  width: 1.28571em;
+  line-height: 1.28571em;
+  margin-top: -0.64286em;
   text-align: center;
-  color: #a4a4a4;
+  color: #fff;
 }
 .fstChoiceRemove::-moz-focus-inner {
   padding: 0;
   border: 0;
-}
-.fstChoiceRemove:hover {
-  color: #43A2F3;
 }
 
 .fstMultipleMode .fstControls {

@@ -1,0 +1,146 @@
+/*--------------------------------------------------------------
+Media query helpers
+--------------------------------------------------------------*/
+@mixin mediaMinWidth ($breakpoint) {
+
+    @media screen and (min-width: em($breakpoint + 1)) {
+        @content
+    }
+
+}
+
+@mixin mediaMaxWidth ($breakpoint) {
+
+    @media screen and (max-width: em($breakpoint)) {
+        @content
+    }
+
+}
+
+@mixin mediaMinToMaxWidth ($breakpoint1,$breakpoint2) {
+
+    @media screen and (min-width: em($breakpoint1 + 1)) and (max-width: em($breakpoint2)) {
+        @content
+    }
+
+}
+
+/*--------------------------------------------------------------
+Hide text
+--------------------------------------------------------------*/
+@mixin hideText { text-indent: -9999em; overflow: hidden; }
+
+/*--------------------------------------------------------------
+Normalized button
+--------------------------------------------------------------*/
+@mixin normalizeButton  {
+
+    margin:0; padding: 0; border: 0; cursor: pointer; background: none;
+    &::-moz-focus-inner { padding: 0; border: 0; }
+
+}
+
+/*--------------------------------------------------------------
+(un)truncate text helper
+--------------------------------------------------------------*/
+@mixin untruncate () {
+
+    max-width: none; overflow: visible; text-overflow: clip; white-space: normal;
+
+}
+
+/*--------------------------------------------------------------
+Hover and focus shortcut
+--------------------------------------------------------------*/
+@mixin hover {
+    &:hover,
+    &:focus {
+        @content;
+    }
+}
+
+/*--------------------------------------------------------------
+Icon font helpers
+--------------------------------------------------------------*/
+@mixin iconByCode ($code) {
+
+    &:before { content: $code; }
+
+}
+
+@mixin iconElement ($paddingLeft: 40) {
+
+    display: inline-block; position: relative; padding-left: $paddingLeft*1px;
+
+}
+
+@mixin iconGraphic ($size: 40) {
+
+    position: absolute; left: 0; top: 50%; text-align: center; text-indent: 0;
+    margin:0; width: $size*1px; height: $size*1px; line-height: $size*1px; margin-top: ($size/2)*-1px;
+
+}
+
+@mixin iconFont ($fontName) {
+
+    font-family: $fontName;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+}
+
+@mixin defineIconFont ($fontName, $basePath, $version: 'v1', $iconMap: false, $sizeIconGraphic: 40, $classPrefix: 'icon') {
+
+    @font-face {
+        font-family: $fontName;
+        src: url('#{$basePath}.eot?#{$version}');
+        src: url('#{$basePath}.eot?#{$version}#iefix') format('embedded-opentype'),
+            url('#{$basePath}.woff?#{$version}') format('woff'),
+            url('#{$basePath}.ttf?#{$version}') format('truetype'),
+            url('#{$basePath}.svg?#{$version}#{$basePath}') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @if $iconMap {
+    	@include generateIconsCss($fontName, $iconMap, $sizeIconGraphic, $classPrefix);
+    }
+
+}
+
+@mixin generateIconsCss ($fontName, $iconMap, $sizeIconGraphic, $classPrefix) {
+
+	[class^="#{$classPrefix}"],
+	[class*=" #{$classPrefix}"] { @include iconElement($sizeIconGraphic); }
+
+	[class^="#{$classPrefix}"]:before,
+	[class*=" #{$classPrefix}"]:before { @include iconFont($fontName); @include iconGraphic($sizeIconGraphic); }
+
+	@each $iconName, $iconContent in $iconMap {
+		.icon#{capitalize($iconName)}:before { content: $iconContent; }
+	}
+
+}
+
+@mixin iconReplacement ($size) {
+
+    @include hideText; padding: 0; display: inline-block; width: $size*1px; height: $size*1px;
+    &:before { left: 50%; margin-left: ($size/2)*-1px; }
+
+}
+
+@function capitalize($string) {
+  @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}
+
+
+@mixin fontSansThin			{ font-family: Lato, Arial, sans-serif; font-weight: 100; font-style: normal; }
+@mixin fontSansLight		{ font-family: Lato, Arial, sans-serif; font-weight: 300; font-style: normal; }
+@mixin fontSansNormal		{ font-family: Lato, Arial, sans-serif; font-weight: 400; font-style: normal; }
+@mixin fontSansBold			{ font-family: Lato, Arial, sans-serif; font-weight: 700; font-style: normal; }
+@mixin fontSansUltraBold	{ font-family: Lato, Arial, sans-serif; font-weight: 900; font-style: normal; }

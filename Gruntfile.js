@@ -80,12 +80,12 @@ module.exports = function(grunt) {
                     'dist/fastselect.css': 'src/fastselect.scss'
                 }
             },
-            test: {
+            demo: {
                 options: {
                     style: 'expanded'
                 },
                 files: {
-                    'test/css/main.css': 'test/css/main.scss'
+                    'demo/css/main.css': 'demo/scss/main.scss'
                 }
             }
         },
@@ -101,7 +101,7 @@ module.exports = function(grunt) {
             },
             cssFiles: {
                 expand: true,
-                files: ['src/**/*.scss', 'test/css/**/*.scss'],
+                files: ['src/**/*.scss', 'demo/scss/**/*.scss'],
                 tasks: ['sass'],
                 options: {
                     spawn: false

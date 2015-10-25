@@ -23,7 +23,7 @@ General styling
 
 	display: inline-block; position: relative;
 	border: 1px solid $fstColorGrayLight1; box-sizing: border-box;
-	color: $fstColorGrayDark1; font-size: 1.1em;
+	color: $fstColorGrayDark1; font-size: 1.1em; background-color: #fff;
 
 	> select,
 	> input { position: absolute; left: -999em; }
@@ -38,8 +38,8 @@ General styling
 
 	&:after {
 
-		position: absolute; content:""; right: em(10,14); top: 50%; margin-top: em(-4,14);
-		border: em(4,14) solid transparent; border-top-color: darken($fstColorGrayLight1,5%);
+		position: absolute; content:""; right: em(10,14); top: 50%; margin-top: em(-5/2,14);
+		border: em(5,14) solid transparent; border-top-color: darken($fstColorGrayLight1,5%);
 
 	}
 
@@ -126,11 +126,13 @@ Single Mode
 
 	&.fstActive {
 
+		z-index: 100;
+
 		&.fstElement,
 		.fstControls,
 		.fstResults { box-shadow: 0 0.2em 0.2em rgba(#000, 0.1); }
 		.fstControls { display: block; }
-		.fstResults { display: block; z-index: 10; }
+		.fstResults { display: block; z-index: 10; margin-top: -1px; }
 
 	}
 
@@ -144,26 +146,38 @@ Multiple mode
 
 	display: inline-block; font-size: 1.2em; position: relative;
 	margin: 0 em(5,12) em(5,12) 0; padding: em(4,12) em(4,12) em(4,12) em(18,12); float: left;
-	background-color: #F9F9F9; border-radius: em(3,12); border: 1px solid $fstColorGrayLight1;
-	cursor: auto;
+	border-radius: em(3,12); border: 1px solid $fstColorMain1;
+	cursor: auto; color: #fff;
+	background-color: $fstColorMain1;
 
 	@include animation(fstAnimationEnter 0.2s);
+
+	&.mod1 {
+
+		background-color: #F9F9F9;	border: 1px solid $fstColorGrayLight1;
+		color: $fstColorGrayDark1;
+
+		> .fstChoiceRemove {
+
+			color: darken($fstColorGrayLight1, 20%);
+
+		}
+
+	}
 
 }
 
 .fstChoiceRemove {
 
 	$size: 18;
-	$iconSize: 12;
+	$iconSize: 14;
 
 	margin:0; padding: 0; border: 0; cursor: pointer; background: none;
     &::-moz-focus-inner { padding: 0; border: 0; }
 
     font-size: em($iconSize, 12); position: absolute; left: 0; top: 50%;
     width: em($size, $iconSize); line-height:em($size, $iconSize); margin-top: em(-$size/2, $iconSize);
-    text-align: center; color: darken($fstColorGrayLight1, 20%);
-
-    &:hover { color: $fstColorMain1; }
+    text-align: center; color: #fff;
 
 }
 

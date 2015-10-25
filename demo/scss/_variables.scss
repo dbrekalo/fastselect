@@ -1,0 +1,31 @@
+/*--------------------------------------------------------------
+Colors
+--------------------------------------------------------------*/
+$colorGrayDark1: #303030;
+$colorGrayDark2: lighten($colorGrayDark1,20%);
+$colorGrayDark3: lighten($colorGrayDark1,25%);
+$colorGrayLight1: darken(#ededed,4%);
+$colorGrayLight2: darken($colorGrayLight1,5%);
+$colorGrayLight3: darken($colorGrayLight1,10%);
+$colorMain1: #2B91F5;
+
+/*--------------------------------------------------------------
+Breakpoints
+--------------------------------------------------------------*/
+$preakpointSmall: 400;
+$breakpointMedium: 720;
+
+/*--------------------------------------------------------------
+Icons
+--------------------------------------------------------------*/
+$icons: (
+
+	menu: '\e603',
+	arrowRight: '\e901',
+	mail: '\e903',
+	facebook: '\e608',
+	github: '\e902',
+	twitter: '\e609',
+	code: '\eaab'
+
+);
