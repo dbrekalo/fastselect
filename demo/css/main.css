@@ -199,6 +199,8 @@ body {
 
 .attireMainNav {
   position: relative;
+  margin-bottom: -1em;
+  z-index: 10;
   background-color: #fff;
 }
 .attireMainNav > .toggleBtn {
@@ -230,6 +232,9 @@ body {
   padding: 0 0 1em;
   display: none;
 }
+.attireMainNav.isActive {
+  margin-bottom: 0;
+}
 .attireMainNav.isActive > ul {
   display: block;
 }
@@ -245,6 +250,9 @@ body {
   color: #2B91F5;
 }
 @media screen and (min-width: 45.0625em) {
+  .attireMainNav {
+    margin-bottom: 0;
+  }
   .attireMainNav > .toggleBtn {
     display: none;
   }
@@ -495,6 +503,7 @@ Misc
   right: 0;
   top: 0;
   width: 10em;
+  z-index: 20;
 }
 .githubRibbon > img {
   display: block;

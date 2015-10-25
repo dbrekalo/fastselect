@@ -60,30 +60,25 @@ body {
 
 .attireMainNav {
 
-	position: relative;	background-color: #fff;
+	position: relative; margin-bottom: -1em; z-index: 10;
+	background-color: #fff;
 
 	> .toggleBtn {
 
 		@include normalizeButton;
 		@include iconReplacement(60);
 
-		&:before {
-
-			font-size: 2.6em; width: em(60,26);
-
-		}
+		&:before { font-size: 2.6em; width: em(60,26); }
 
 	}
 
-	> ul {
+	> ul { padding: 0 0 1em; display: none;	}
 
-		padding: 0 0 1em; display: none;
+	&.isActive {
 
-	}
+		margin-bottom: 0;
 
-	&.isActive > ul {
-
-		display: block;
+		> ul { display: block; }
 
 	}
 
@@ -93,21 +88,15 @@ body {
 		color: $colorGrayDark2; letter-spacing: 0.07em;
 		text-transform: uppercase;
 
-		&:hover {
-
-			color: $colorMain1;
-
-		}
+		&:hover { color: $colorMain1; }
 
 	}
 
 	@include mediaMinWidth($breakpointMedium) {
 
-		> .toggleBtn {
+		margin-bottom: 0;
 
-			display: none;
-
-		}
+		> .toggleBtn { display: none; }
 
 		> ul {
 
@@ -342,7 +331,7 @@ Misc
 
 .githubRibbon {
 
-	position: absolute; right: 0; top: 0; width: 10em;
+	position: absolute; right: 0; top: 0; width: 10em; z-index: 20;
 
 	> img {
 
