@@ -14,6 +14,7 @@
 
         <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
+        <script src="https://raw.githubusercontent.com/leeoniya/preCode.js/master/preCode.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/prism/1.2.0/prism.js"></script>
         <script src="dist/fastselect.standalone.js"></script>
@@ -308,17 +309,20 @@
 
             </script>
 
-<pre class="attireCodeHighlight">
-<code class="language-markup"><script type="prism-html-markup"><select class="multipleSelect" multiple name="language">
-    <option value="Bangladesh">Bangladesh</option>
-    <option selected value="Barbados">Barbados</option>
-    <option selected value="Belarus">Belarus</option>
-    <option value="Belgium">Belgium</optio
-    ...
+            <pre class="attireCodeHighlight"><code class="language-markup">
+                <script type="prism-html-markup"><select class="multipleSelect" multiple name="language">
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option selected value="Barbados">Barbados</option>
+                    <option selected value="Belarus">Belarus</option>
+                    <option value="Belgium">Belgium</option>
+                    ...
+                </select>
+                </script>
+            </code></pre>
 
-</select>
-</script></code></pre>
-<pre class="attireCodeHighlight"><code class="language-javascript">$('.multipleSelect').fastselect();</code></pre>
+            <pre class="attireCodeHighlight"><code class="language-javascript">
+                $('.multipleSelect').fastselect();
+            </code></pre>
 
         </form>
 
@@ -343,8 +347,13 @@
 
             </script>
 
-<pre class="attireCodeHighlight"><code class="language-markup"><script type="prism-html-markup"><input type="text" multiple class="multipleInputDynamic" data-url="demo/data.json" name="language" /></script></code></pre>
-<pre class="attireCodeHighlight"><code class="language-javascript">$('.multipleInputDynamic').fastselect();</code></pre>
+            <pre class="attireCodeHighlight"><code class="language-markup">
+                <script type="prism-html-markup"><input type="text" multiple class="multipleInputDynamic" data-url="demo/data.json" name="language" /></script>
+            </code></pre>
+
+            <pre class="attireCodeHighlight"><code class="language-javascript">
+                $('.multipleInputDynamic').fastselect();
+            </code></pre>
 
         </form>
 
@@ -376,17 +385,19 @@
 
             </script>
 
-<pre class="attireCodeHighlight"><code class="language-markup"><script type="prism-html-markup"><input
-    type="text"
-    multiple
-    class="multipleInputDynamicWithInitialValue"
-    value="Algeria,Angola"
-    data-initial-value='[{"text": "Algeria", "value" : "Algeria"}, {"text": "Angola", "value" : "Angola"}]'
-    data-url="demo/data.json"
-    data-load-once="true"
-    name="language"/>
-</script></code></pre>
-<pre class="attireCodeHighlight"><code class="language-javascript">$('.multipleInputDynamicWithInitialValue').fastselect();</code></pre>
+            <pre class="attireCodeHighlight"><code class="language-markup">
+                <script type="prism-html-markup"><input
+                    type="text"
+                    multiple
+                    class="multipleInputDynamicWithInitialValue"
+                    value="Algeria,Angola"
+                    data-initial-value='[{"text": "Algeria", "value" : "Algeria"}, {"text": "Angola", "value" : "Angola"}]'
+                    data-url="demo/data.json"
+                    data-load-once="true"
+                    name="language"/>
+                </script>
+            </code></pre>
+            <pre class="attireCodeHighlight"><code class="language-javascript">$('.multipleInputDynamicWithInitialValue').fastselect();</code></pre>
 
         </form>
 
@@ -680,8 +691,12 @@
 
             </script>
 
-<pre class="attireCodeHighlight"><code class="language-markup"><script type="prism-html-markup"><input type="text" class="singleInputDynamic" data-url="demo/data.json" data-load-once="true" name="language" /></script></code></pre>
-<pre class="attireCodeHighlight"><code class="language-javascript">$('.singleInputDynamic').fastselect();</code></pre>
+            <pre class="attireCodeHighlight"><code class="language-markup">
+                <script type="prism-html-markup"><input type="text" class="singleInputDynamic" data-url="demo/data.json" data-load-once="true" name="language" /></script>
+            </code></pre>
+            <pre class="attireCodeHighlight"><code class="language-javascript">
+                $('.singleInputDynamic').fastselect();
+            </code></pre>
 
         </form>
 
@@ -690,7 +705,7 @@
         <form class="attireCodeToggleBlock" action="">
 
             <p class="attireTextType2">
-                Input with initial value and dynamically loaded options.
+                Input with initial value and dynamically loaded options. Upon selection item and item model are logged to console.
                 <button class="attireCodeToggleBtn iconCode" type="button">Show code</button>
             </p>
 
@@ -700,12 +715,24 @@
 
             <script>
 
-                $('.singleInputDynamicWithInitialValue').fastselect();
+                $('.singleInputDynamicWithInitialValue').fastselect({
+                    onItemSelect: function($item, itemModel) {
+                        console.log($item, itemModel);
+                    }
+                });
 
             </script>
 
-<pre class="attireCodeHighlight"><code class="language-markup"><script type="prism-html-markup"><input type="text" value="Algeria" data-initial-value='{"text": "Algeria", "value" : "Algeria"}' class="singleInputDynamicWithInitialValue" data-url="demo/data.json" data-load-once="true" name="language" /></script></code></pre>
-<pre class="attireCodeHighlight"><code class="language-javascript">$('.singleInputDynamicWithInitialValue').fastselect();</code></pre>
+            <pre class="attireCodeHighlight"><code class="language-markup">
+                <script type="prism-html-markup"><input type="text" value="Algeria" data-initial-value='{"text": "Algeria", "value" : "Algeria"}' class="singleInputDynamicWithInitialValue" data-url="demo/data.json" data-load-once="true" name="language" /></script>
+            </code></pre>
+            <pre class="attireCodeHighlight"><code class="language-javascript">
+                $('.singleInputDynamicWithInitialValue').fastselect({
+                    onItemSelect: function($item, itemModel) {
+                        console.log($item, itemModel);
+                    }
+                });
+            </code></pre>
 
         </form>
 
@@ -723,64 +750,70 @@
             Alternatively you can can just use fast select constructor.
         </p>
 
-<pre class="attireCodeHighlight"><code class="language-javascript">var $select = $('select');
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            var $select = $('select');
 
-// Run, fire and forget
-$select.fastselect()
+            // Run, fire and forget
+            $select.fastselect()
 
-// Run via plugin facade and get instance
-var fastSelectInstance = $select.fastselect(options).data('fastselect');
+            // Run via plugin facade and get instance
+            var fastSelectInstance = $select.fastselect(options).data('fastselect');
 
-// run directly
-var fastSelectInstance = new $.Fastselect($select.get(0), options);
-</code></pre>
+            // run directly
+            var fastSelectInstance = new $.Fastselect($select.get(0), options);
+        </code></pre>
 
         <p class="attireTextType2">
             Plugin options / defaults are exposed in $.Fastselect.defaults namespace so you can easily adjust them globally.
             Full list of options is bellow.
         </p>
 
-<pre class="attireCodeHighlight"><code class="language-javascript">
-$.Fastselect.defaults = {
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            $.Fastselect.defaults = {
 
-    elementClass: 'fstElement',
-    singleModeClass: 'fstSingleMode',
-    noneSelectedClass: 'fstNoneSelected',
-    multipleModeClass: 'fstMultipleMode',
-    queryInputClass: 'fstQueryInput',
-    queryInputExpandedClass: 'fstQueryInputExpanded',
-    fakeInputClass: 'fstFakeInput',
-    controlsClass: 'fstControls',
-    toggleButtonClass: 'fstToggleBtn',
-    activeClass: 'fstActive',
-    itemSelectedClass: 'fstSelected',
-    choiceItemClass: 'fstChoiceItem',
-    choiceRemoveClass: 'fstChoiceRemove',
+                elementClass: 'fstElement',
+                singleModeClass: 'fstSingleMode',
+                noneSelectedClass: 'fstNoneSelected',
+                multipleModeClass: 'fstMultipleMode',
+                queryInputClass: 'fstQueryInput',
+                queryInputExpandedClass: 'fstQueryInputExpanded',
+                fakeInputClass: 'fstFakeInput',
+                controlsClass: 'fstControls',
+                toggleButtonClass: 'fstToggleBtn',
+                activeClass: 'fstActive',
+                itemSelectedClass: 'fstSelected',
+                choiceItemClass: 'fstChoiceItem',
+                choiceRemoveClass: 'fstChoiceRemove',
 
-    resultsContClass: 'fstResults',
-    resultsOpenedClass: 'fstResultsOpened',
-    groupClass: 'fstGroup',
-    itemClass: 'fstResultItem',
-    groupTitleClass: 'fstGroupTitle',
-    loadingClass: 'fstLoading',
-    noResultsClass: 'fstNoResults',
-    focusedItemClass: 'fstFocused',
+                resultsContClass: 'fstResults',
+                resultsOpenedClass: 'fstResultsOpened',
+                groupClass: 'fstGroup',
+                itemClass: 'fstResultItem',
+                groupTitleClass: 'fstGroupTitle',
+                loadingClass: 'fstLoading',
+                noResultsClass: 'fstNoResults',
+                focusedItemClass: 'fstFocused',
 
-    matcher: null,
+                matcher: null,
 
-    url: null,
-    loadOnce: false,
-    apiParam: 'query',
-    initialValue: null,
+                url: null,
+                loadOnce: false,
+                apiParam: 'query',
+                initialValue: null,
+                clearQueryOnSelect: true,
+                minQueryLength: 1,
+                typeTimeout: 150,
 
-    parseData: null,
+                parseData: null,
+                onItemSelect: null,
+                onItemCreate: null,
 
-    placeholder: 'Choose option',
-    searchPlaceholder: 'Search options',
-    noResultsText: 'No results'
+                placeholder: 'Choose option',
+                searchPlaceholder: 'Search options',
+                noResultsText: 'No results'
 
-};
-</code></pre>
+            };
+        </code></pre>
 
     </div>
 </section>

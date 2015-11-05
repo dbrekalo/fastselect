@@ -534,10 +534,6 @@
         pickTo = Fastsearch.pickTo,
         selectorFromClass = Fastsearch.selectorFromClass;
 
-    function log() {
-        window.console && typeof window.console.log === 'function' && console.log.apply(console, arguments);
-    }
-
     function Fastselect(inputElement, options) {
 
         this.init.apply(this, arguments);
@@ -686,7 +682,7 @@
                 wrapSelector: this.isMultiple ? this.$el : this.$controls,
 
                 minQueryLength: 0,
-                typeTimeout: 0,
+                typeTimeout: this.hasCustomLoader ? options.typeTimeout : 0,
                 preventSubmit: true,
                 fillInputId: false,
 
@@ -695,11 +691,14 @@
                     groupCaption: 'label'
                 },
 
-                onItemSelect: function($item, model) {
+                onItemSelect: function($item, model, fastsearch) {
 
                     self.setSelectedOption(model);
                     self.writeToInput();
                     !self.isMultiple && self.hide();
+                    options.clearQueryOnSelect && fastsearch.clear();
+
+                    options.onItemSelect && options.onItemSelect.call(self, $item, model, self, fastsearch);
 
                 },
 
@@ -707,6 +706,8 @@
 
                     model.$item = $item;
                     model.selected && $item.addClass(options.itemSelectedClass);
+
+                    options.onItemCreate && options.onItemCreate.call(self, $item, model, self);
 
                 }
 
@@ -763,9 +764,9 @@
 
                 this.$queryInput.on(this.namespaceEvents('keyup'), function(e) {
 
-                    if (self.$queryInput.val().length === 0 && e.keyCode === 8) {
-                        log('TODO implement delete');
-                    }
+                    // if (self.$queryInput.val().length === 0 && e.keyCode === 8) {
+                    //     console.log('TODO implement delete');
+                    // }
 
                     self.adjustQueryInputLayout();
 
@@ -949,6 +950,17 @@
                     selected: $option.is(':selected')
                 };
             });
+
+        },
+
+        destroy: function() {
+
+            $document.off(this.ens);
+            this.fastsearch.destroy();
+            this.$input.off(this.ens).detach().insertAfter(this.$el);
+            this.$el.off(this.ens).remove();
+
+            this.$input.data() && delete this.$input.data().fastselect;
 
         }
 
@@ -1183,8 +1195,13 @@
         loadOnce: false,
         apiParam: 'query',
         initialValue: null,
+        clearQueryOnSelect: true,
+        minQueryLength: 1,
+        typeTimeout: 150,
 
         parseData: null,
+        onItemSelect: null,
+        onItemCreate: null,
 
         placeholder: 'Choose option',
         searchPlaceholder: 'Search options',
@@ -1203,4 +1220,4 @@
         });
     };
 
-})(window.jQuery || window.Zepto || window.simpleQuery);
+})(window.jQuery || window.Zepto);
