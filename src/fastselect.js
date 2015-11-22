@@ -146,7 +146,7 @@
 
             pickTo(fastSearchParams, options, [
                 'resultsContClass', 'resultsOpenedClass', 'groupClass', 'itemClass',
-                'groupTitleClass', 'loadingClass', 'noResultsClass', 'focusedItemClass'
+                'groupTitleClass', 'loadingClass', 'noResultsClass', 'noResultsText', 'focusedItemClass'
             ]);
 
             this.fastsearch = new Fastsearch(this.$queryInput.get(0), $.extend(fastSearchParams, {
