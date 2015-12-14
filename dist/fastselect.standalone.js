@@ -780,7 +780,10 @@
 
                     var $choice = $(e.currentTarget).closest(selectorFromClass(options.choiceItemClass));
 
-                    self.removeSelectedOption($choice.data(), $choice);
+                    self.removeSelectedOption({
+                        value: $choice.attr('data-value'),
+                        text: $choice.attr('data-text')
+                    }, $choice);
 
                 });
 
