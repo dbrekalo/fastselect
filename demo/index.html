@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        {{ include('snippets/pageMeta.html', {
+            "title": "Fastselect",
+            "description": "Fastselect is lightweight browser plugin for enhanced select elements based on jQuery. Enables fast and sensible UI upgrade of select element with features like option searching and remote dataset loading."
+        }) }}
+
+        {{ include('snippets/attireAssets.html') }}
+
+        <link rel="stylesheet" href="dist/fastselect.min.css">
+        <script src="dist/fastselect.standalone.js"></script>
+
+        <style>
+
+            .fstElement { font-size: 1.2em; }
+            .fstToggleBtn { min-width: 16.5em; }
+
+            .submitBtn { display: none; }
+
+            .fstMultipleMode { display: block; }
+            .fstMultipleMode .fstControls { width: 100%; }
+
+        </style>
+
+    </head>
+<body>
+
+    {{ include('snippets/googleAnalytics.html') }}
+
+    {{ include('sections/about.html') }}
+    {{ include('sections/examples.html') }}
+    {{ include('sections/apiAndOptions.html') }}
+    {{ include('sections/installation.html') }}
+
+    {{ include('snippets/githubRibbon.html') }}
+    {{ include('snippets/attireFooter.html') }}
+
+</body>
+
+</html>

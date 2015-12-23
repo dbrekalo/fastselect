@@ -1,0 +1,78 @@
+<section id="section-api-and-options" class="attireBlock">
+    <div class="inner">
+
+        <h2 class="attireTitleType2">Api and options</h2>
+
+        <p class="attireTextType2">
+            Fast select can be instantiated via plugin facade.
+            If there is a need to obtain fastselect object instance you can do so via jquery data utility.
+            Alternatively you can can just use fast select constructor.
+        </p>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            var $select = $('select');
+
+            // Run, fire and forget
+            $select.fastselect()
+
+            // Run via plugin facade and get instance
+            var fastSelectInstance = $select.fastselect(options).data('fastselect');
+
+            // run directly
+            var fastSelectInstance = new $.Fastselect($select.get(0), options);
+        </code></pre>
+
+        <p class="attireTextType2">
+            Plugin options / defaults are exposed in $.Fastselect.defaults namespace so you can easily adjust them globally.
+            Full list of options is bellow.
+        </p>
+
+        <pre class="attireCodeHighlight"><code class="language-javascript">
+            $.Fastselect.defaults = {
+
+                elementClass: 'fstElement',
+                singleModeClass: 'fstSingleMode',
+                noneSelectedClass: 'fstNoneSelected',
+                multipleModeClass: 'fstMultipleMode',
+                queryInputClass: 'fstQueryInput',
+                queryInputExpandedClass: 'fstQueryInputExpanded',
+                fakeInputClass: 'fstFakeInput',
+                controlsClass: 'fstControls',
+                toggleButtonClass: 'fstToggleBtn',
+                activeClass: 'fstActive',
+                itemSelectedClass: 'fstSelected',
+                choiceItemClass: 'fstChoiceItem',
+                choiceRemoveClass: 'fstChoiceRemove',
+
+                resultsContClass: 'fstResults',
+                resultsOpenedClass: 'fstResultsOpened',
+                groupClass: 'fstGroup',
+                itemClass: 'fstResultItem',
+                groupTitleClass: 'fstGroupTitle',
+                loadingClass: 'fstLoading',
+                noResultsClass: 'fstNoResults',
+                focusedItemClass: 'fstFocused',
+
+                matcher: null,
+
+                url: null,
+                loadOnce: false,
+                apiParam: 'query',
+                initialValue: null,
+                clearQueryOnSelect: true,
+                minQueryLength: 1,
+                typeTimeout: 150,
+
+                parseData: null,
+                onItemSelect: null,
+                onItemCreate: null,
+
+                placeholder: 'Choose option',
+                searchPlaceholder: 'Search options',
+                noResultsText: 'No results'
+
+            };
+        </code></pre>
+
+    </div>
+</section>
