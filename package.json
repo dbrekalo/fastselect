@@ -1,12 +1,30 @@
 {
   "name": "fastselect",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dbrekalo/fastselect"
   },
+  "license": "MIT",
+  "author": {
+    "email": "dbrekalo@gmail.com",
+    "name": "Damir Brekalo"
+  },
+  "main": "src/fastselect.js",
+  "scripts": {
+    "watch": "grunt build && grunt watch",
+    "build": "grunt build"
+  },
+  "keywords": [
+    "select",
+    "fast",
+    "fastselect"
+  ],
   "devDependencies": {
+    "bourbon": "~4.2.3",
     "grunt": "^0.4.5",
+    "grunt-bump": "^0.7.0",
+    "grunt-cli": "^0.1.13",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-copy": "^0.6.0",
     "grunt-contrib-jshint": "^0.10.0",
@@ -16,5 +34,9 @@
     "grunt-include-replace": "^3.2.0",
     "grunt-jscs": "^1.5.0",
     "load-grunt-tasks": "^0.6.0"
+  },
+  "dependencies": {
+    "jquery": ">=1.7",
+    "fastsearch": "~1"
   }
 }

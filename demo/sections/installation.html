@@ -1,17 +1,14 @@
-<section id="section-installation" class="attireBlock">
+<section class="attireBlock">
     <div class="inner">
 
         <h2 class="attireTitleType2">Installation</h2>
 
         <p class="attireTextType2">
-            All library consumables are in dist folder.
+            For browser usage browse dist folder - if working with build tools go with src folder.
             Fastselect uses <a href="https://github.com/dbrekalo/fastsearch">Fastsearch</a> library internaly for querying and rendering options.
-            If you are already using Fastsearch plugin elsewhere on page you can choose to use non standalone files.
-            You can do styling yourself or use provided css.
-        </p>
-
-        <p class="attireTextType2">
-            Download library files from <a href="{{ repositoryUrl }}">github repo</a> or get them via bower (bower install fastselect)
+            Download library files from <a href="{{ repositoryUrl }}">github repo</a>,
+            get them via bower (bower install {{ bowerRepositoryName }})
+            or via npm (npm install {{ npmRepositoryName }})
         </p>
 
     </div>

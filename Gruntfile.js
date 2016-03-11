@@ -4,6 +4,8 @@ module.exports = function(grunt) {
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
+        npmPackage: grunt.file.readJSON('package.json'),
+        bowerPackage: grunt.file.readJSON('bower.json'),
 
         uglify: {
             min: {
@@ -81,14 +83,6 @@ module.exports = function(grunt) {
                 files: {
                     'dist/fastselect.css': 'src/fastselect.scss'
                 }
-            },
-            demo: {
-                options: {
-                    style: 'expanded'
-                },
-                files: {
-                    'demo/css/main.css': 'demo/scss/main.scss'
-                }
             }
         },
 
@@ -119,11 +113,22 @@ module.exports = function(grunt) {
             }
         },
 
+        bump: {
+            options: {
+                files: ['package.json', 'bower.json'],
+                commitFiles: ['package.json', 'bower.json'],
+                tagName: '%VERSION%',
+                push: false
+            }
+        },
+
         includereplace: {
             dist: {
                 options: {
                     globals: {
-                        repositoryUrl: '<%= pkg.repository.url %>',
+                        repositoryUrl: '<%= npmPackage.repository.url %>',
+                        npmRepositoryName: '<%= npmPackage.name %>',
+                        bowerRepositoryName: '<%= bowerPackage.name %>'
                     },
                     prefix: '{{ ',
                     suffix: ' }}'

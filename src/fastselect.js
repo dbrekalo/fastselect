@@ -1,4 +1,14 @@
-;(function($) {
+(function(root, factory) {
+
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery', 'fastsearch'], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        module.exports = factory(require('jquery'), require('fastsearch'));
+    } else {
+        factory(root.jQuery);
+    }
+
+}(this, function($) {
 
     var $document = $(document),
         instanceNum = 0,
@@ -695,4 +705,6 @@
         });
     };
 
-})(window.jQuery || window.Zepto);
+    return $;
+
+}));
