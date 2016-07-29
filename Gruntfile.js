@@ -35,11 +35,11 @@ module.exports = function(grunt) {
 
         concat: {
             standalone: {
-                src: ['bower_components/fastsearch/dist/fastsearch.js', 'dist/fastselect.js'],
+                src: ['node_modules/fastsearch/dist/fastsearch.js', 'dist/fastselect.js'],
                 dest: 'dist/fastselect.standalone.js'
             },
             standaloneMin: {
-                src: ['bower_components/fastsearch/dist/fastsearch.min.js', 'dist/fastselect.min.js'],
+                src: ['node_modules/fastsearch/dist/fastsearch.min.js', 'dist/fastselect.min.js'],
                 dest: 'dist/fastselect.standalone.min.js'
             }
         },
@@ -65,23 +65,24 @@ module.exports = function(grunt) {
         },
 
         sass: {
-            options: {
-                sourcemap: 'none'
-            },
             min: {
-                options: {
-                    style: 'compressed'
-                },
                 files: {
                     'dist/fastselect.min.css': 'src/fastselect.scss'
+                },
+                options: {
+                    outputStyle: 'compressed',
+                    sourceMap: false,
+                    precision: 5
                 }
             },
-            expanded: {
-                options: {
-                    style: 'expanded'
-                },
+            expandend: {
                 files: {
                     'dist/fastselect.css': 'src/fastselect.scss'
+                },
+                options: {
+                    outputStyle: 'expandend',
+                    sourceMap: false,
+                    precision: 5
                 }
             }
         },

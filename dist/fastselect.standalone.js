@@ -571,12 +571,13 @@
             this.options = pickTo($.extend(true, {}, Fastselect.defaults, options, {
                 placeholder: this.$input.attr('placeholder')
             }), this.$input.data(), [
-                'url', 'loadOnce', 'apiParam', 'initialValue'
+                'url', 'loadOnce', 'apiParam', 'initialValue', 'userOptionAllowed'
             ]);
 
             this.ens = '.fastselect' + (++instanceNum);
             this.hasCustomLoader = this.$input.is('input');
             this.isMultiple = !!this.$input.attr('multiple');
+            this.userOptionAllowed = this.hasCustomLoader && this.isMultiple && this.options.userOptionAllowed;
 
             this.optionsCollection = new OptionsCollection(pickTo({multipleValues: this.isMultiple}, this.options, [
                 'url', 'loadOnce', 'parseData', 'matcher'
@@ -720,6 +721,12 @@
                     !self.isMultiple && self.hide();
                     options.clearQueryOnSelect && fastsearch.clear();
 
+                    if (self.userOptionAllowed && model.isUserOption) {
+                        fastsearch.$resultsCont.remove();
+                        delete fastsearch.$resultsCont;
+                        self.hide();
+                    }
+
                     options.onItemSelect && options.onItemSelect.call(self, $item, model, self, fastsearch);
 
                 },
@@ -728,6 +735,10 @@
 
                     model.$item = $item;
                     model.selected && $item.addClass(options.itemSelectedClass);
+
+                    if (self.userOptionAllowed && model.isUserOption) {
+                        $item.text(self.options.userOptionPrefix + $item.text()).addClass(self.options.userOptionClass);
+                    }
 
                     options.onItemCreate && options.onItemCreate.call(self, $item, model, self);
 
@@ -753,7 +764,12 @@
 
             if (this.hasCustomLoader) {
 
-                params[options.apiParam] = $.trim(this.$queryInput.val());
+                var query = $.trim(this.$queryInput.val());
+
+                if (query && options.apiParam) {
+                    params[options.apiParam] = query;
+                }
+
                 this.optionsCollection.fetch(params, onDone);
 
             } else {
@@ -925,7 +941,8 @@
         writeToInput: function() {
 
             var values = this.optionsCollection.getValues(),
-                formattedValue = this.isMultiple ? (this.hasCustomLoader ? values.join(',') : values) : values[0];
+                delimiter = this.options.valueDelimiter,
+                formattedValue = this.isMultiple ? (this.hasCustomLoader ? values.join(delimiter) : values) : values[0];
 
             this.$input.val(formattedValue).trigger('change');
 
@@ -933,7 +950,22 @@
 
         renderOptions: function(filter) {
 
-            var data = filter ? this.optionsCollection.filter(this.$queryInput.val()) : this.optionsCollection.models;
+            var query = this.$queryInput.val();
+            var data = (filter ? this.optionsCollection.filter(query) : this.optionsCollection.models).slice(0);
+
+            if (this.userOptionAllowed) {
+
+                var queryInList = this.optionsCollection.findWhere(function(model) {
+                    return model.value === query;
+                });
+
+                query && !queryInList && data.unshift({
+                    text: query,
+                    value: query,
+                    isUserOption: true
+                });
+
+            }
 
             this.fastsearch.showResults(this.fastsearch.storeResponse(data).generateResults(data));
 
@@ -1071,6 +1103,7 @@
             return $.get(options.url, params, function(data) {
 
                 self.models = options.parseData ? options.parseData(data) : data;
+
                 onDone && onDone.call(self);
 
             });
@@ -1204,6 +1237,7 @@
         itemSelectedClass: 'fstSelected',
         choiceItemClass: 'fstChoiceItem',
         choiceRemoveClass: 'fstChoiceRemove',
+        userOptionClass: 'fstUserOption',
 
         resultsContClass: 'fstResults',
         resultsOpenedClass: 'fstResultsOpened',
@@ -1223,6 +1257,8 @@
         clearQueryOnSelect: true,
         minQueryLength: 1,
         typeTimeout: 150,
+        userOptionAllowed: false,
+        valueDelimiter: ',',
 
         parseData: null,
         onItemSelect: null,
@@ -1230,7 +1266,8 @@
 
         placeholder: 'Choose option',
         searchPlaceholder: 'Search options',
-        noResultsText: 'No results'
+        noResultsText: 'No results',
+        userOptionPrefix: 'Add '
 
     };
 

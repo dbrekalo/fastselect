@@ -13,7 +13,10 @@
   "main": "src/fastselect.js",
   "scripts": {
     "watch": "grunt build && grunt watch",
-    "build": "grunt build"
+    "build": "grunt build",
+    "bump:patch": "grunt bump:patch",
+    "bump:minor": "grunt bump:minor",
+    "bump:major": "grunt bump:major"
   },
   "keywords": [
     "select",
@@ -33,6 +36,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-include-replace": "^3.2.0",
     "grunt-jscs": "^1.5.0",
+    "grunt-sass": "^1.2.0",
     "load-grunt-tasks": "^0.6.0"
   },
   "dependencies": {

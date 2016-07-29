@@ -1,4 +1,4 @@
-@import '../bower_components/bourbon/app/assets/stylesheets/bourbon';
+@import '../node_modules/bourbon/app/assets/stylesheets/bourbon';
 
 $fstColorGrayLight1: #D7D7D7;
 $fstColorGrayDark1: #232323;
@@ -54,7 +54,8 @@ General styling
 
 .fstResults {
 
-	position: absolute; left: -1px; top: 100%; right: -1px; max-height: 30em; overflow-x: hidden; overflow-y: auto;
+	position: absolute; left: -1px; top: 100%; right: -1px; max-height: 30em;
+	overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch;
 	border: 1px solid $fstColorGrayLight1; border-top: 0; background-color: #FFF;
 
 	display: none;
@@ -65,6 +66,12 @@ General styling
 
 	font-size: 1.4em; display: block; padding: em(7,14) em(10,14); margin: 0;
 	cursor: pointer; border-top: 1px solid #fff;
+
+	&.fstUserOption {
+
+		color: lighten($fstColorGrayDark1, 30%);
+
+	}
 
 	&.fstFocused {
 

@@ -43,6 +43,7 @@
                 itemSelectedClass: 'fstSelected',
                 choiceItemClass: 'fstChoiceItem',
                 choiceRemoveClass: 'fstChoiceRemove',
+                userOptionClass: 'fstUserOption',
 
                 resultsContClass: 'fstResults',
                 resultsOpenedClass: 'fstResultsOpened',
@@ -62,6 +63,8 @@
                 clearQueryOnSelect: true,
                 minQueryLength: 1,
                 typeTimeout: 150,
+                userOptionAllowed: false,
+                valueDelimiter: ',',
 
                 parseData: null,
                 onItemSelect: null,
@@ -69,7 +72,8 @@
 
                 placeholder: 'Choose option',
                 searchPlaceholder: 'Search options',
-                noResultsText: 'No results'
+                noResultsText: 'No results',
+                userOptionPrefix: 'Add '
 
             };
         </code></pre>

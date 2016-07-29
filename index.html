@@ -390,6 +390,52 @@
 
         <hr class="attireSeparator mod2">
 
+        <h3 class="attireTitleType3">User provided options or tags</h3>
+
+        <form class="attireCodeToggleBlock" action="">
+
+            <p class="attireTextType2">
+                User can add his own custom options (tags) by supplying userOptionAllowed parameter as it is shown bellow.
+                <button class="attireCodeToggleBtn iconCode" type="button">Show code</button>
+            </p>
+
+            <input
+                type="text"
+                multiple
+                class="tagsInput"
+                value="Algeria,Angola"
+                data-initial-value='[{&quot;text&quot;: &quot;Algeria&quot;, &quot;value&quot; : &quot;Algeria&quot;}, {&quot;text&quot;: &quot;Angola&quot;, &quot;value&quot; : &quot;Angola&quot;}]'
+                data-url="demo/data.json"
+                data-user-option-allowed="true"
+                data-load-once="true"
+                name="language"
+            />
+
+            <button class="submitBtn" type="submit">Submit</button>
+
+            <script>
+                $('.tagsInput').fastselect();
+            </script>
+
+            <pre class="attireCodeHighlight"><code class="language-markup">
+                <script type="prism-html-markup"><input
+                    type="text"
+                    multiple
+                    class="tagsInput"
+                    value="Algeria,Angola"
+                    data-initial-value='[{"text": "Algeria", "value" : "Algeria"}, {"text": "Angola", "value" : "Angola"}]'
+                    data-user-option-allowed="true"
+                    data-url="demo/data.json"
+                    data-load-once="true"
+                    name="language"/>
+                </script>
+            </code></pre>
+            <pre class="attireCodeHighlight"><code class="language-javascript">$('.tagsInput').fastselect();</code></pre>
+
+        </form>
+
+        <hr class="attireSeparator mod2">
+
         <h3 class="attireTitleType3">Single mode select element</h3>
         <p class="attireTextType2">
             Fast select plugin enhances regular select element with UI controls for searching options on the fly.
@@ -770,6 +816,7 @@
                 itemSelectedClass: 'fstSelected',
                 choiceItemClass: 'fstChoiceItem',
                 choiceRemoveClass: 'fstChoiceRemove',
+                userOptionClass: 'fstUserOption',
 
                 resultsContClass: 'fstResults',
                 resultsOpenedClass: 'fstResultsOpened',
@@ -789,6 +836,8 @@
                 clearQueryOnSelect: true,
                 minQueryLength: 1,
                 typeTimeout: 150,
+                userOptionAllowed: false,
+                valueDelimiter: ',',
 
                 parseData: null,
                 onItemSelect: null,
@@ -796,7 +845,8 @@
 
                 placeholder: 'Choose option',
                 searchPlaceholder: 'Search options',
-                noResultsText: 'No results'
+                noResultsText: 'No results',
+                userOptionPrefix: 'Add '
 
             };
         </code></pre>
