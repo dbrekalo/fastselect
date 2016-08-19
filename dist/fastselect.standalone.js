@@ -282,6 +282,10 @@
 
             }
 
+            if (this.options.focusFirstItem && this.$resultItems.length) {
+                this.navigateItem('down');
+            }
+
             this.resultsOpened = true;
 
         },
@@ -501,6 +505,7 @@
 
         template: null, // provide your template function if you need one - function(data, fastsearchApi)
         mouseEvents: !('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0), // detect if client is touch enabled so plugin can decide if mouse specific events should be set.
+        focusFirstItem: false,
 
         responseFormat: { // Adjust where plugin looks for data in your JSON server response
             url: 'url',
@@ -696,7 +701,7 @@
                 fastSearchParams = {};
 
             pickTo(fastSearchParams, options, [
-                'resultsContClass', 'resultsOpenedClass', 'groupClass', 'itemClass',
+                'resultsContClass', 'resultsOpenedClass', 'groupClass', 'itemClass', 'focusFirstItem',
                 'groupTitleClass', 'loadingClass', 'noResultsClass', 'noResultsText', 'focusedItemClass'
             ]);
 
@@ -807,6 +812,7 @@
                     // }
 
                     self.adjustQueryInputLayout();
+                    self.show();
 
                 }).on(this.namespaceEvents('focus'), function() {
 
@@ -1256,6 +1262,7 @@
         initialValue: null,
         clearQueryOnSelect: true,
         minQueryLength: 1,
+        focusFirstItem: false,
         typeTimeout: 150,
         userOptionAllowed: false,
         valueDelimiter: ',',

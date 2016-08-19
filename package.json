@@ -40,7 +40,7 @@
     "load-grunt-tasks": "^0.6.0"
   },
   "dependencies": {
-    "jquery": ">=1.7",
-    "fastsearch": "~1"
+    "fastsearch": "^1.10.0",
+    "jquery": ">=1.7"
   }
 }

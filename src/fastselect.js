@@ -156,7 +156,7 @@
                 fastSearchParams = {};
 
             pickTo(fastSearchParams, options, [
-                'resultsContClass', 'resultsOpenedClass', 'groupClass', 'itemClass',
+                'resultsContClass', 'resultsOpenedClass', 'groupClass', 'itemClass', 'focusFirstItem',
                 'groupTitleClass', 'loadingClass', 'noResultsClass', 'noResultsText', 'focusedItemClass'
             ]);
 
@@ -267,6 +267,7 @@
                     // }
 
                     self.adjustQueryInputLayout();
+                    self.show();
 
                 }).on(this.namespaceEvents('focus'), function() {
 
@@ -716,6 +717,7 @@
         initialValue: null,
         clearQueryOnSelect: true,
         minQueryLength: 1,
+        focusFirstItem: false,
         typeTimeout: 150,
         userOptionAllowed: false,
         valueDelimiter: ',',
