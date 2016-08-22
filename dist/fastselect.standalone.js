@@ -721,18 +721,28 @@
 
                 onItemSelect: function($item, model, fastsearch) {
 
-                    self.setSelectedOption(model);
-                    self.writeToInput();
-                    !self.isMultiple && self.hide();
-                    options.clearQueryOnSelect && fastsearch.clear();
+                    var maxItems = options.maxItems;
 
-                    if (self.userOptionAllowed && model.isUserOption) {
-                        fastsearch.$resultsCont.remove();
-                        delete fastsearch.$resultsCont;
-                        self.hide();
+                    if (self.isMultiple && maxItems && (self.optionsCollection.getValues().length > (maxItems - 1))) {
+
+                        options.maxItemsReached && options.maxItemsReached();
+
+                    } else {
+
+                        self.setSelectedOption(model);
+                        self.writeToInput();
+                        !self.isMultiple && self.hide();
+                        options.clearQueryOnSelect && fastsearch.clear();
+
+                        if (self.userOptionAllowed && model.isUserOption) {
+                            fastsearch.$resultsCont.remove();
+                            delete fastsearch.$resultsCont;
+                            self.hide();
+                        }
+
+                        options.onItemSelect && options.onItemSelect.call(self, $item, model, self, fastsearch);
+
                     }
-
-                    options.onItemSelect && options.onItemSelect.call(self, $item, model, self, fastsearch);
 
                 },
 
@@ -1255,6 +1265,8 @@
         focusedItemClass: 'fstFocused',
 
         matcher: null,
+        maxItems: false,
+        maxItemsReached: null,
 
         url: null,
         loadOnce: false,
