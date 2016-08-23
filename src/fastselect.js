@@ -180,7 +180,7 @@
 
                     if (self.isMultiple && maxItems && (self.optionsCollection.getValues().length > (maxItems - 1))) {
 
-                        options.maxItemsReached && options.maxItemsReached();
+                        options.onMaxItemsReached && options.onMaxItemsReached(this);
 
                     } else {
 
@@ -720,8 +720,6 @@
         focusedItemClass: 'fstFocused',
 
         matcher: null,
-        maxItems: false,
-        maxItemsReached: null,
 
         url: null,
         loadOnce: false,
@@ -733,10 +731,12 @@
         typeTimeout: 150,
         userOptionAllowed: false,
         valueDelimiter: ',',
+        maxItems: null,
 
         parseData: null,
         onItemSelect: null,
         onItemCreate: null,
+        onMaxItemsReached: null,
 
         placeholder: 'Choose option',
         searchPlaceholder: 'Search options',
