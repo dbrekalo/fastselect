@@ -701,8 +701,8 @@
                 fastSearchParams = {};
 
             pickTo(fastSearchParams, options, [
-                'resultsContClass', 'resultsOpenedClass', 'groupClass', 'itemClass', 'focusFirstItem',
-                'groupTitleClass', 'loadingClass', 'noResultsClass', 'noResultsText', 'focusedItemClass'
+                'resultsContClass', 'resultsOpenedClass', 'resultsFlippedClass', 'groupClass', 'itemClass', 'focusFirstItem',
+                'groupTitleClass', 'loadingClass', 'noResultsClass', 'noResultsText', 'focusedItemClass', 'flipOnBottom'
             ]);
 
             this.fastsearch = new Fastsearch(this.$queryInput.get(0), $.extend(fastSearchParams, {
@@ -762,6 +762,10 @@
             }));
 
             this.fastsearch.getResults = function() {
+
+                if (self.userOptionAllowed && self.$queryInput.val().length > 1) {
+                    self.renderOptions();
+                }
 
                 self.getOptions(function() {
                     self.renderOptions(true);
@@ -967,11 +971,17 @@
         renderOptions: function(filter) {
 
             var query = this.$queryInput.val();
-            var data = (filter ? this.optionsCollection.filter(query) : this.optionsCollection.models).slice(0);
+            var data;
+
+            if (this.optionsCollection.models) {
+                data = (filter ? this.optionsCollection.filter(query) : this.optionsCollection.models).slice(0);
+            } else {
+                data = [];
+            }
 
             if (this.userOptionAllowed) {
 
-                var queryInList = this.optionsCollection.findWhere(function(model) {
+                var queryInList = this.optionsCollection.models && this.optionsCollection.findWhere(function(model) {
                     return model.value === query;
                 });
 
@@ -1257,6 +1267,7 @@
 
         resultsContClass: 'fstResults',
         resultsOpenedClass: 'fstResultsOpened',
+        resultsFlippedClass: 'fstResultsFilpped',
         groupClass: 'fstGroup',
         itemClass: 'fstResultItem',
         groupTitleClass: 'fstGroupTitle',
@@ -1273,6 +1284,7 @@
         clearQueryOnSelect: true,
         minQueryLength: 1,
         focusFirstItem: false,
+        flipOnBottom: true,
         typeTimeout: 150,
         userOptionAllowed: false,
         valueDelimiter: ',',
