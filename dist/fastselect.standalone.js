@@ -687,7 +687,7 @@
 
             $(
                 '<div data-text="' + optionModel.text + '" data-value="' + optionModel.value + '" class="' + this.options.choiceItemClass + '">' +
-                   optionModel.text +
+                    $('<div>').html(optionModel.text).text() +
                     '<button class="' + this.options.choiceRemoveClass + '" type="button">×</button>' +
                 '</div>'
             ).insertBefore(this.$queryInput);
