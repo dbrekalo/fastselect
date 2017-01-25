@@ -330,7 +330,7 @@
                 } else {
 
                     this.$fakeInput = this.$fakeInput || $('<span>').addClass(this.options.fakeInputClass);
-                    this.$fakeInput.html(this.$queryInput.val().replace(/\s/g, '&nbsp;'));
+                    this.$fakeInput.text(this.$queryInput.val().replace(/\s/g, '&nbsp;'));
                     this.$queryInput.removeAttr('placeholder').css('width', this.$fakeInput.insertAfter(this.$queryInput).width() + 20);
                     this.$fakeInput.detach();
 
