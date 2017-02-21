@@ -12,6 +12,7 @@
 
     var $document = $(window.document),
         instanceNum = 0,
+        eventStringRE = /\w\b/g,
         keyMap = {
             13: 'enter',
             27: 'escape',
@@ -52,7 +53,7 @@
 
             var eventNamespace = this.ens;
 
-            return events.replace(/\w\b/g, function(match) {
+            return events.replace(eventStringRE, function(match) {
                 return match + eventNamespace;
             });
 
@@ -265,6 +266,10 @@
 
             this.$el.removeClass(this.options.loadingClass).addClass(this.options.resultsOpenedClass);
 
+            if (this.options.flipOnBottom) {
+                this.checkDropdownPosition();
+            }
+
             this.$resultsCont = this.$resultsCont || $('<div>').addClass(this.options.resultsContClass).appendTo(this.$el);
 
             if ($content) {
@@ -282,11 +287,21 @@
 
             }
 
-            if (this.options.focusFirstItem && this.$resultItems.length) {
+            if (this.options.focusFirstItem && this.$resultItems && this.$resultItems.length) {
                 this.navigateItem('down');
             }
 
             this.resultsOpened = true;
+
+        },
+
+        checkDropdownPosition: function() {
+
+            var flipOnBottom = this.options.flipOnBottom;
+            var offset = typeof flipOnBottom === 'boolean' && flipOnBottom ? 400 : flipOnBottom;
+            var isFlipped = this.$input.offset().top + offset > $document.height();
+
+            this.$el.toggleClass(this.options.resultsFlippedClass, isFlipped);
 
         },
 
@@ -493,6 +508,7 @@
 
         resultsContClass: 'fs_results', // html classes
         resultsOpenedClass: 'fsr_opened',
+        resultsFlippedClass: 'fsr_flipped',
         groupClass: 'fs_group',
         itemClass: 'fs_result_item',
         groupTitleClass: 'fs_group_title',
@@ -506,6 +522,7 @@
         template: null, // provide your template function if you need one - function(data, fastsearchApi)
         mouseEvents: !('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0), // detect if client is touch enabled so plugin can decide if mouse specific events should be set.
         focusFirstItem: false,
+        flipOnBottom: false,
 
         responseFormat: { // Adjust where plugin looks for data in your JSON server response
             url: 'url',
